@@ -1,0 +1,99 @@
+body {
+    background-color: #000000;
+    color: aliceblue;
+    font-family: fixedsys;
+}
+
+::selection {
+    background-color: transparent;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+a:hover {
+    background-color: aliceblue;
+    color: #000000;
+    cursor: pointer;
+}
+
+a.github-link:hover {
+    background-color: red;
+    color: #000000;
+    cursor: pointer;
+}
+
+a.github-link {
+    color: red;
+}
+
+a.selected {
+    background-color: aliceblue;
+    color: #000000;
+}
+
+div.header {
+    margin-left: 20px;
+}
+
+div.status-bar {
+    margin-left: 35px;
+    font-family: fixedsys;
+    font-size: 20px;
+    display: flex;
+}
+
+div.status-left {
+    margin-right: 45px;
+}
+
+div.status-right {
+    margin-right: 45px;
+}
+
+div.file-explorer {
+    margin-left: 35px;
+    font-family: fixedsys;
+    font-size: 25px;
+    margin-bottom: 60px;
+}
+
+div.credit {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    padding-left: 10px;
+    padding-top: 10px;
+    background-color: #000000;
+    height: 30px;
+    width: 100%;
+}
+
+span.click-status-blinker {
+    color: red;
+    font-size: 20px;
+}
+
+span.enter-status-blinker {
+    color: red;
+    font-size: 20px;
+}
+
+span.up-status-blinker {
+    color: red;
+    font-size: 20px;
+}
+
+span.down-status-blinker {
+    color: red;
+    font-size: 20px;
+}
+
+span.file-path {
+    color: #87ffff;
+}
+
+span.file-explorer-pointer {
+    color: red;
+}
