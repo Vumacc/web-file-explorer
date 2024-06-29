@@ -45,106 +45,104 @@ function renderFileExplorer(path) {
     fileExplorer.innerHTML = content;
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    renderFileExplorer(currentPath);
+renderFileExplorer(currentPath);
 
-    function updateSelectedFile() {
-        const selectedFileDisplay = document.getElementById('selected-file');
-        selectedFileDisplay.textContent = `Selected file: ${fileStructure[currentPath][pointerIndex].name}`;
-    }
+function updateSelectedFile() {
+    const selectedFileDisplay = document.getElementById('selected-file');
+    selectedFileDisplay.textContent = `Selected file: ${fileStructure[currentPath][pointerIndex].name}`;
+}
 
-    function updatePointer() {
-        const fileExplorerPointers = document.querySelectorAll('.file-explorer-pointer');
-        const fileLinks = document.querySelectorAll('.file-explorer a');
-        fileExplorerPointers.forEach((pointer, index) => {
-            if (index === pointerIndex) {
-                pointer.textContent = '>';
-                fileLinks[index].classList.add('selected');
-            } else {
-                pointer.textContent = '\u00A0'; // Non-breaking space
-                fileLinks[index].classList.remove('selected');
-            }
-        });
-    }
-
-    function handleArrowKeyPress(event) {
-        const fileExplorerPointers = document.querySelectorAll('.file-explorer-pointer');
-        if (event.key === 'ArrowUp' && pointerIndex > 0) {
-            pointerIndex--;
-            upBlinker.style.color = '#04ff00';
-            upBlinker.innerHTML = 'ACTIVE';
-            setTimeout(() => {
-                upBlinker.style.color = 'red';
-                upBlinker.innerHTML = 'INACTIVE';
-            }, 75);
-        } else if (event.key === 'ArrowDown' && pointerIndex < fileExplorerPointers.length - 1) {
-            pointerIndex++;
-            downBlinker.style.color = '#04ff00';
-            downBlinker.innerHTML = 'ACTIVE';
-            setTimeout(() => {
-                downBlinker.style.color = 'red';
-                downBlinker.innerHTML = 'INACTIVE';
-            }, 75);
+function updatePointer() {
+    const fileExplorerPointers = document.querySelectorAll('.file-explorer-pointer');
+    const fileLinks = document.querySelectorAll('.file-explorer a');
+    fileExplorerPointers.forEach((pointer, index) => {
+        if (index === pointerIndex) {
+            pointer.textContent = '>';
+            fileLinks[index].classList.add('selected');
+        } else {
+            pointer.textContent = '\u00A0'; // Non-breaking space
+            fileLinks[index].classList.remove('selected');
         }
-        document.getElementById('pointer-index').textContent = `Pointer Index: ${pointerIndex}`;
-        updatePointer();
-        updateSelectedFile();
-    }
+    });
+}
 
-    function handleEnterKeyPress() {
-        enterBlinker.style.color = '#04ff00';
-        enterBlinker.innerHTML = 'ACTIVE';
-
-        const selectedFile = fileStructure[currentPath][pointerIndex];
-        if (selectedFile.name === '..') {
-            const pathParts = currentPath.split('/');
-            if (pathParts.length > 3) {
-                pathParts.pop(); // Remove empty part
-                pathParts.pop(); // Remove current directory
-                currentPath = pathParts.join('/') + '/';
-            } else {
-                currentPath = 'Vumacc/Terminal-Portfolio/';
-            }
-        } else if (selectedFile.isDirectory) {
-            currentPath = `${currentPath}${selectedFile.name}`;
-        } else if (!selectedFile.isDirectory) {
-            currentPath = `${currentPath}${selectedFile.name}`;
-        }
-
-        pointerIndex = 0;
-        renderFileExplorer(currentPath);
-        updatePointer();
-        updateSelectedFile();
-
+function handleArrowKeyPress(event) {
+    const fileExplorerPointers = document.querySelectorAll('.file-explorer-pointer');
+    if (event.key === 'ArrowUp' && pointerIndex > 0) {
+        pointerIndex--;
+        upBlinker.style.color = '#04ff00';
+        upBlinker.innerHTML = 'ACTIVE';
         setTimeout(() => {
-            enterBlinker.style.color = 'red';
-            enterBlinker.innerHTML = 'INACTIVE';
+            upBlinker.style.color = 'red';
+            upBlinker.innerHTML = 'INACTIVE';
+        }, 75);
+    } else if (event.key === 'ArrowDown' && pointerIndex < fileExplorerPointers.length - 1) {
+        pointerIndex++;
+        downBlinker.style.color = '#04ff00';
+        downBlinker.innerHTML = 'ACTIVE';
+        setTimeout(() => {
+            downBlinker.style.color = 'red';
+            downBlinker.innerHTML = 'INACTIVE';
         }, 75);
     }
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-            handleArrowKeyPress(event);
-        } else if (event.key === 'Enter') {
-            handleEnterKeyPress();
-        }
-    });
-
-    document.addEventListener('click', () => {
-        clickBlinker.style.color = '#04ff00';
-        clickBlinker.innerHTML = 'ACTIVE';
-        setTimeout(() => {
-            clickBlinker.style.color = 'red';
-            clickBlinker.innerHTML = 'INACTIVE';
-        }, 75);
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        document.getElementById('pointer-coordinates').textContent = `Cursor position: (${x}, ${y})`;
-    });
-
+    document.getElementById('pointer-index').textContent = `Pointer Index: ${pointerIndex}`;
     updatePointer();
     updateSelectedFile();
+}
+
+function handleEnterKeyPress() {
+    enterBlinker.style.color = '#04ff00';
+    enterBlinker.innerHTML = 'ACTIVE';
+
+    const selectedFile = fileStructure[currentPath][pointerIndex];
+    if (selectedFile.name === '..') {
+        const pathParts = currentPath.split('/');
+        if (pathParts.length > 3) {
+            pathParts.pop(); // Remove empty part
+            pathParts.pop(); // Remove current directory
+            currentPath = pathParts.join('/') + '/';
+        } else {
+            currentPath = 'Vumacc/Terminal-Portfolio/';
+        }
+    } else if (selectedFile.isDirectory) {
+        currentPath = `${currentPath}${selectedFile.name}`;
+    } else if (!selectedFile.isDirectory) {
+        currentPath = `${currentPath}${selectedFile.name}`;
+    }
+
+    pointerIndex = 0;
+    renderFileExplorer(currentPath);
+    updatePointer();
+    updateSelectedFile();
+
+    setTimeout(() => {
+        enterBlinker.style.color = 'red';
+        enterBlinker.innerHTML = 'INACTIVE';
+    }, 75);
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        handleArrowKeyPress(event);
+    } else if (event.key === 'Enter') {
+        handleEnterKeyPress();
+    }
 });
+
+document.addEventListener('click', () => {
+    clickBlinker.style.color = '#04ff00';
+    clickBlinker.innerHTML = 'ACTIVE';
+    setTimeout(() => {
+        clickBlinker.style.color = 'red';
+        clickBlinker.innerHTML = 'INACTIVE';
+    }, 75);
+});
+
+document.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    document.getElementById('pointer-coordinates').textContent = `Cursor position: (${x}, ${y})`;
+});
+
+updatePointer();
+updateSelectedFile();
