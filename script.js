@@ -60,7 +60,7 @@ function updatePointer() {
             pointer.textContent = '>';
             fileLinks[index].classList.add('selected');
         } else {
-            pointer.textContent = '\u00A0'; // Non-breaking space
+            pointer.textContent = '\u00A0';
             fileLinks[index].classList.remove('selected');
         }
     });
@@ -98,8 +98,8 @@ function handleEnterKeyPress() {
     if (selectedFile.name === '..') {
         const pathParts = currentPath.split('/');
         if (pathParts.length > 3) {
-            pathParts.pop(); // Remove empty part
-            pathParts.pop(); // Remove current directory
+            pathParts.pop();
+            pathParts.pop();
             currentPath = pathParts.join('/') + '/';
         } else {
             currentPath = 'Vumacc/Terminal-Portfolio/';
