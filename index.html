@@ -1,40 +1,63 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Vim-Like File Explorer</title>
-        <meta name="description" content="A file system explorer made by Vumacc">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="favicon.ico">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://unpkg.com/fixedsys-css/css/fixedsys.css">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Web File Explorer</title>
+        <meta
+            name="description"
+            content="Very funny and creative description here frfr" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="favicon.ico" />
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/fixedsys-css/css/fixedsys.css" />
     </head>
     <body>
         <div class="header">
-            <h1>VIM-LIKE FILE EXPLORER</h1>
+            <h1>WEB FILE EXPLORER THINGY</h1>
         </div>
 
         <div class="status-bar">
             <div class="status-left">
-                Click active : <span class="click-status-blinker"> INACTIVE</span> <br>
-                Enter active : <span class="enter-status-blinker"> INACTIVE</span> <br>
-                pgup pressed : <span class="up-status-blinker">    INACTIVE</span> <br>
-                pgdn pressed : <span class="down-status-blinker">  INACTIVE</span>
+                Click active :
+                <span class="click-status-blinker"> INACTIVE</span> <br />
+                Enter active :
+                <span class="enter-status-blinker"> INACTIVE</span> <br />
+                pgup &nbsp;active :
+                <span class="up-status-blinker"> INACTIVE</span>
+                <br />
+                pgdn &nbsp;active :
+                <span class="down-status-blinker"> INACTIVE</span>
             </div>
 
             <div class="status-right">
-                <span id="pointer-coordinates"> Cursor position : (x, y) </span> <br>
-                <span id="pointer-index">Pointer index : 0</span> <br>
-                <span id="selected-file">Selected file : ..</span>
+                <span id="pointer-coordinates">
+                    Cursor position&nbsp;: (x, y)
+                </span>
+                <br />
+                <span id="pointer-index"
+                    >Pointer &nbsp;&nbsp;index&nbsp;: 0</span
+                >
+                <br />
+                <span id="selected-file">Selected &nbsp;file : ..</span>
             </div>
         </div>
 
-        <br><br>
+        <br /><br />
 
         <div class="file-explorer"></div>
 
-        <div class="credit">Made by Vumacc | <a href="https://github.com/Vumacc/Web-File-Explorer" class="github-link">source code</a> | Still highly in development, more bugs than a 1 star motel.</div>
+        <div class="credit">
+            Made by Vumacc |
+            <a
+                href="https://github.com/Vumacc/Web-File-Explorer"
+                class="github-link"
+                >source code</a
+            >
+            | Still highly in development, more bugs than a 1 star motel.
+        </div>
 
         <script src="script.js" async defer></script>
     </body>
